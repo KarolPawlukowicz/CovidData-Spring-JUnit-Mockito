@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Covid Tracker</title>
+
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h1>Covid Tracker</h1>
+    <hr>
+    <h2>Update Covid data</h2>
+
+    <form action="#" th:action="@{/saveCovid}" th:object="${covid}"
+          method="POST">
+
+        <!-- Add hidden form field to handle update -->
+        <input type="hidden" th:field="*{id}" />
+
+        <input input type="date" th:field="*{date}" class="form-control mb-4 col-4">
+
+        <input type="number" th:field="*{infected}" class="form-control mb-4 col-4">
+umber" th:field="*{deaths}" class="form-control mb-4 col-4">
+
+        <input type="number" th:field="*{recovered}" class="form-control mb-4 col-4">
+
+        <button type="submit" class="btn btn-info col-2"> Update Covid data</button>
+    </form>
+
+    <input type="n
+    <hr>
+
+    <a th:href = "@{/}"> Back to Covid List</a>
+</div>
+</body>
+</html>
