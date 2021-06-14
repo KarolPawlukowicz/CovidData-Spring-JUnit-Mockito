@@ -21,7 +21,7 @@ public class CovidController {
     @GetMapping("/")
     public String viewHomePage(Model model) {
         model.addAttribute("listCovid", covidDataService.getAllCovid());
-        return "index";
+        return "covid/index";
     }
 
     @GetMapping("/showNewCovidForm")
@@ -29,14 +29,14 @@ public class CovidController {
         // create model attribute to bind form data
         Covid covid = new Covid();
         model.addAttribute("covid", covid);
-        return "new_covid";
+        return "covid/new_covid";
     }
 
     @PostMapping("/saveCovid")
     public String saveCovid(@ModelAttribute("covid") Covid covid) {
         // save covid to database
         covidDataService.saveCovid(covid);
-        return "redirect:/";
+        return "covid/redirect:/";
     }
 
     @GetMapping("/showFormForUpdate/{id}")
@@ -47,7 +47,7 @@ public class CovidController {
 
         // set employee as a model attribute to pre-populate the form
         model.addAttribute("covid", covid);
-        return "update_covid";
+        return "covid/update_covid";
     }
 
     @GetMapping("/deleteCovid/{id}")
@@ -55,7 +55,7 @@ public class CovidController {
 
         // call delete employee method
         this.covidDataService.deleteCovidById(id);
-        return "redirect:/";
+        return "covid/redirect:/";
     }
 
     @GetMapping("/page/{pageNo}")
@@ -77,7 +77,7 @@ public class CovidController {
         model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
 
         model.addAttribute("listCovid", listCovid);
-        return "index";
+        return "covid/index";
     }
 
 }
