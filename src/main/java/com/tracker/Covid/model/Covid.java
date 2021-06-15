@@ -1,9 +1,6 @@
 package com.tracker.Covid.model;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
 import javax.persistence.*;
-import java.util.Date;
 
 @Entity
 @Table(name = "covid")
@@ -24,9 +21,7 @@ public class Covid {
     @Column(name = "recovered")
     private long recovered;
 
-    public Covid() {
-
-    }
+    public Covid() {}
 
     public Covid(String date, long infected) {
         this.date = date;

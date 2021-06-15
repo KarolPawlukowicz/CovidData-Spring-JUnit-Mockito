@@ -12,7 +12,5 @@ public interface CovidDataService {
     void saveCovid(Covid covid);
     Covid getCovidById(long id);
     void deleteCovidById(long id);
-    Page<Covid> findPaginated(int pageNo, int pageSize, String sortField, String sortDirection);
     void fetchAllVirusData() throws IOException, InterruptedException, ParseException;
-
 }

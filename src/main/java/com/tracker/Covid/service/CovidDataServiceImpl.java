@@ -3,15 +3,8 @@ package com.tracker.Covid.service;
 import com.tracker.Covid.model.Covid;
 import com.tracker.Covid.respository.CovidRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
-import javax.swing.*;
 import java.io.IOException;
 import java.io.StringReader;
 import java.net.URI;
@@ -19,7 +12,6 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 import org.apache.commons.csv.CSVFormat;
@@ -27,7 +19,6 @@ import org.apache.commons.csv.CSVRecord;
 
 @Service
 public class CovidDataServiceImpl implements CovidDataService{
-
     @Autowired
     private CovidRepository covidRepository;
 
@@ -58,22 +49,6 @@ public class CovidDataServiceImpl implements CovidDataService{
         this.covidRepository.save(covid);
     }
 
-    @Override
-    public Page<Covid> findPaginated(int pageNo, int pageSize, String sortField, String sortDirection) {
-        Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortField).ascending() :
-                Sort.by(sortField).descending();
-
-        Pageable pageable = PageRequest.of(pageNo - 1, pageSize, sort);
-        return this.covidRepository.findAll(pageable);
-    }
-
-
-
-
-
-
-    @PostConstruct
-    @Scheduled(cron = "* * 1 * * *")
     @Override
     public void fetchAllVirusData() throws IOException, InterruptedException, ParseException {
         System.out.println(covidRepository.findAll().size());
@@ -169,7 +144,6 @@ public class CovidDataServiceImpl implements CovidDataService{
                 this.covidRepository.save(cd);
             }
         }
-
     }
 
 }
