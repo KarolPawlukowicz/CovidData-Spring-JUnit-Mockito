@@ -7,3 +7,10 @@ You can view all this data. You can also delete and update data from a selected 
 
 Home page looks like this:
 ![image](https://user-images.githubusercontent.com/60007028/122113135-fe435400-ce21-11eb-80d7-6cc80765c81c.png)
+
+
+And adding and updating covid data page looks like this:
+
+![image](https://user-images.githubusercontent.com/60007028/122113746-cbe62680-ce22-11eb-980e-9bae0fdb6c5c.png)
+
+
