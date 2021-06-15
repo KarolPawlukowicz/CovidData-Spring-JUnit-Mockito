@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -42,7 +43,7 @@ public class CovidDataServiceImpl implements CovidDataService{
         if (optional.isPresent()) {
             covid = optional.get();
         } else {
-            throw new RuntimeException(" Employee not found for id :: " + id);
+            throw new RuntimeException(" Covid data not found for id :: " + id);
         }
         return covid;
     }
@@ -71,9 +72,8 @@ public class CovidDataServiceImpl implements CovidDataService{
 
 
 
-
-    //@PostConstruct
-    //@Scheduled(cron = "* * 1 * * *")
+    @PostConstruct
+    @Scheduled(cron = "* * 1 * * *")
     @Override
     public void fetchAllVirusData() throws IOException, InterruptedException, ParseException {
         System.out.println(covidRepository.findAll().size());

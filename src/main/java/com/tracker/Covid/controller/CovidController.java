@@ -36,7 +36,7 @@ public class CovidController {
     public String saveCovid(@ModelAttribute("covid") Covid covid) {
         // save covid to database
         covidDataService.saveCovid(covid);
-        return "covid/redirect:/";
+        return "redirect:/";
     }
 
     @GetMapping("/showFormForUpdate/{id}")
@@ -52,32 +52,8 @@ public class CovidController {
 
     @GetMapping("/deleteCovid/{id}")
     public String deleteCovid(@PathVariable (value = "id") long id) {
-
-        // call delete employee method
         this.covidDataService.deleteCovidById(id);
-        return "covid/redirect:/";
-    }
-
-    @GetMapping("/page/{pageNo}")
-    public String findPaginated(@PathVariable(value = "pageNo") int pageNo,
-                                @RequestParam("sortField") String sortField,
-                                @RequestParam("sortDir") String sortDir,
-                                Model model) {
-        int pageSize = 5;
-
-        Page<Covid> page = covidDataService.findPaginated(pageNo, pageSize, sortField, sortDir);
-        List<Covid> listCovid = page.getContent();
-
-        model.addAttribute("currentPage", pageNo);
-        model.addAttribute("totalPages", page.getTotalPages());
-        model.addAttribute("totalItems", page.getTotalElements());
-
-        model.addAttribute("sortField", sortField);
-        model.addAttribute("sortDir", sortDir);
-        model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
-
-        model.addAttribute("listCovid", listCovid);
-        return "covid/index";
+        return "redirect:/";
     }
 
 }
